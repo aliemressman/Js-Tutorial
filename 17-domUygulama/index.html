@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>DOM Uygulama</title>
+</head>
+<body>
+    <h1 class="text-5xl my-10 text-center"> Todo List</h1>
+    <div class="container mx-auto width 1/2">
+        <form >
+            <div class="border flex">
+                <input 
+                type="text" 
+                placeholder="Bir şeyler yaz..." 
+                class="w-full p-3 relative z-90"
+                id="todo-input">
+                <button type="submit" class="border-l px-6 bg-green-500 text-white" id="add-todo"> Ekle</button>
+            </div>
+        </form>
+        <div class="flex justify-end my-5">
+            <button class="p-3 bg-red-500 text-white" id="clear"> Temizle</button>
+        </div>
+
+        <ul class="border p-6 flex flex-col gap-y-4 " id="todos">
+            <!--  <li class="flex justify-between border px-4 py-3 items-center 
+            justify-between">
+                <span> TODO Name</span>
+                <button class="text-red-400"> SİL </button>
+            </li> -->
+        </ul>
+    </div>
+
+    <script>
+        const textInputDOM = document.getElementById("todo-input");
+        const btnAddTodoDOM = document.getElementById("add-todo");
+        const todosDOM = document.querySelector("#todos");
+        const btnClearDOM = document.getElementById("clear");
+
+        let textInputValue = "";
+        let todos = [];
+
+        textInputDOM.addEventListener("change",function(event){
+            textInputValue = event.target.value;
+            console.log(textInputValue);   
+        })
+        btnAddTodoDOM.addEventListener("click", addTodo);
+        btnClearDOM.addEventListener("click",clearTODO);
+
+        function addTodo(e){
+            e.preventDefault();
+            todos.unshift({
+                id : todos.length + 1,
+                todoTitle: textInputValue
+            });
+            textInputDOM.value = "";
+            displayTODO();
+        }
+
+        function displayTODO(){
+            if(todos.length === 0){
+                todosDOM.innerHTML = "Liste Boş!";
+            }else{
+                let result = "";
+                todos.forEach((item)=> {
+                result += `
+                <li class="flex justify-between border px-4 py-3 items-center 
+                justify-between">
+                <span> ${item.todoTitle}</span>
+                <button class="text-red-400" onclick = "deleteTODO(${item.id})"> SİL </button>
+            </li> `;
+            });
+            todosDOM.innerHTML = result;
+            }     
+        }
+        displayTODO();
+
+        function deleteTODO(id){
+            let deleteID;
+            for(let index in todos){
+                if(todos[index].id == id){
+                    deleteID = index;
+                }
+            }
+            todos.splice(deleteID,1);
+            displayTODO();
+        }
+
+        function clearTODO(){
+            todos.splice(0,todos.length);
+            displayTODO();
+        }
+    </script>
+</body>
+</html>

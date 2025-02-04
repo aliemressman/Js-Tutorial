@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Script DOM</title>
+    <style>
+      /*  h1{color: red;}*/
+    </style>
+</head>
+<body>
+   /* <h1 class="title"> Java Script DOM</h1> */
+    <h2> Öğrenci Listesi </h2>
+
+    <ul class="list">
+        <li class="list-item">Ali</li>
+        <li class="list-item">Veli</li>
+        <li class="list-item">Ayşe</li>
+        <li class="list-item">Fatma</li>
+    </ul>
+
+    <script>
+        //! JavaScript Tekli Seçiciler
+        /*const title = document.querySelector(".title");
+        const title2 = document.getElementById("title");
+        title.style.color = "green";
+        title2.style.color = "blue";
+        document.querySelector("h1").style.color = "white";
+        document.querySelector("h1").style.backgroundColor = "red";
+        document.querySelector("h1").style.height = "250px";
+        document.querySelector("h1").style.width = "100px";
+        const title = document.querySelector("h1");
+        title.innerText= "DOM";
+        title.innerHTML = "<button> click </button>";
+        const list = document.querySelector("ul");
+        document.querySelector("li").style.color = "red";
+        document.querySelector("li:last-child").style.color = "red";
+        document.querySelector("li:nth-child(3)").style.color = "red";
+        document.querySelector("li:nth-child(2)").style.color = "purple";
+        document.querySelector("li:nth-child(4)").style.color = "green";
+*/
+        /*const listItem = document.getElementsByClassName("list-item")*/
+        /*const listItem = document.querySelectorAll(".list-item")*/
+        const listItems = document.getElementsByTagName("li")
+
+
+       
+       /* for(let i = 0; i < listItem.length; i++){
+            listItem[i].style.color = "green";
+        }*/
+        for (let list of listItems){
+            list.style.color = "red";
+        }
+
+</script>
+</body>
+</html>
